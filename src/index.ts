@@ -3,10 +3,12 @@ import exphbs from 'express-handlebars';
 import path from "path";
 
 //Importando Rutas
-import indexRoutes from './routes'
+import indexRoutes from './routes/index'
+import  BooksRoutes  from "./routes/books";
 
 // Iniciar
 const app = express();
+import './database' ;
 
 // Settings
 app.set('port', process.env.PORT || 3002);
@@ -25,7 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 // Routes
-app.use('/books', indexRoutes)
+app.use('/', indexRoutes)
+app.use('/books', BooksRoutes)
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')))
